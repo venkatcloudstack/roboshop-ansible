@@ -10,7 +10,7 @@
       instance_type: t3.micro
       image_id: "{{ image_id }}"
       security_groups:
-        - roboshop-"{{ item}}"
+        - roboshop-"{{ item }}"
         - roboshop-common
     loop: "{{ instances }}"
     register: ec2_output
