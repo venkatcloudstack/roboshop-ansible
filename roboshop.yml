@@ -67,7 +67,7 @@
   - name: delete r53 records for frontend
     amazon.aws.route53:
       state: absent
-      zone: {{ domain_name }}
+      zone: "{{ domain_name }}"
       ttl: 1
       type: A
       record: "{{ domain_name }}"
