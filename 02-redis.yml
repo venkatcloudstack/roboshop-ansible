@@ -3,7 +3,7 @@
   become: yes
   tasks:
   - name: enable redis 7
-    command: dnf module redis:7 -y
+    command: dnf module enable redis:7 -y
   - name: install redis
     package:
       name: redis
