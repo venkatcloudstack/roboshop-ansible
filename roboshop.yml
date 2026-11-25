@@ -40,7 +40,7 @@
     loop: "{{ ec2_output.results }}"
     when: action == "create"
     
-  - name: create r53 records for "frontend"
+  - name: create r53 records for frontend
     amazon.aws.route53:
       state: present
       zone: "{{ domain_name }}"
@@ -51,8 +51,8 @@
       overwrite: true
     loop: "{{ ec2_output.results }}"
     when:
-    - item.item == "frontend""
-    - action == "create""
+    - item.item == "frontend"
+    - action == "create"
 
   - name: delete r53 records
     amazon.aws.route53:
