@@ -1,0 +1,25 @@
+- name: configuring mongodb server
+  hosts: redis
+  become: yes
+  tasks:
+  - name: enable redis 7
+    command: dnf module redis:7 -y
+  - name: install redis
+    package:
+      name: redis
+      state: present
+  - name: allow remote connection
+    replace:
+      path: /etc/redis/redis.conf
+      regexp: '127.0.0.1'
+      replace: '0.0.0.0'
+  - name: change protected file
+    lineinfile:
+      path: /etc/redis/redis.conf
+      regexp: protected-mode yes'
+      line: 'Protected-mode no' 
+  - name: start and enable redis
+    service:
+      name: redis
+      state: started
+      enabled: true
